@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  server1:
+    build: ./server1
+    networks:
+      my_network:
+        ipv4_address: 192.168.10.11  # Assign static IP address to server1
+  server2:
+    build: ./server2
+    networks:
+      my_network:
+        ipv4_address: 192.168.10.12  # Assign static IP address to server2
+  database:
+    build: ./database
+    networks:
+      my_network:
+        ipv4_address: 192.168.10.13  # Assign static IP address to database
+  loadbalancer:
+    build: ./loadbalancer
+    networks:
+      my_network:
+        ipv4_address: 192.168.10.10  # Assign static IP address to loadbalancer
+
+networks:
+  my_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24  # Define subnet for the network

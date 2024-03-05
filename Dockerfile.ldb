@@ -1,0 +1,23 @@
+#Utilisation de l'image officielle de nginx comme image de base
+FROM nginx
+
+
+#creation du dossier letsencrypt
+RUN  mkdir -p /etc/letsencrypt/live/#adresse #/
+#modifier le fichier par default
+#RUN mv /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.conf.old
+#copie du ficher de configuration nginx.conf
+COPY loadbalancer.conf /etc/nginx/conf.d/
+COPY fullchain.pem /etc/letsencrypt/live/#adresse#/
+COPY privkey.pem /etc/letsencrypt/live/#adresse#/
+COPY options-ssl-nginx.conf /etc/letsencrypt/
+COPY ssl-dhparams.pem /etc/letsencrypt/
+
+#suppression du fichier /etc/nginx/sites-enabled/default
+# si necessaire
+
+# Exposition des ports 80 et 443
+EXPOSE 80 443
+
+# Commande a lancer lorsque nginx demarre
+CMD ["nginx" , "-g", "daemon off;"]

@@ -1,0 +1,22 @@
+FROM mariadb:latest
+
+EXPOSE 3306
+
+#copier le fichier de config mysql.cnf 
+#COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+#copie de la base de données des utilisateurs de wordpress
+COPY #base de données.sql# /docker-entrypoint-initdb.d/
+
+
+#VARIABLE d'environnements de mariadb
+ENV MYSQL_ROOT_PASSWORD=
+ENV MYSQL_DATABASE=
+ENV MYSQL_USER=
+ENV MYSQL_PASSWORD=
+
+#Volume pour la persistance des données
+
+VOLUME /var/lib/mysql 
+
+# Commande a executer au demarrage
+CMD ["mariadbd"]
