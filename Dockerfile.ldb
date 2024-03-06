@@ -5,7 +5,7 @@ FROM nginx
 #creation du dossier letsencrypt
 RUN  mkdir -p /etc/letsencrypt/live/#adresse #/
 #modifier le fichier par default
-#RUN mv /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.conf.old
+RUN mv /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.old
 #copie du ficher de configuration nginx.conf
 COPY loadbalancer.conf /etc/nginx/conf.d/
 COPY fullchain.pem /etc/letsencrypt/live/#adresse#/
