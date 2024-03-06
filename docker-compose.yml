@@ -21,7 +21,9 @@ services:
     networks:
       my_network:
         ipv4_address: 192.168.10.10  # Assign static IP address to loadbalancer
-
+    ports: 
+       - "80:80/tcp"
+       - "443:443/tcp"      
 networks:
   my_network:
     driver: bridge

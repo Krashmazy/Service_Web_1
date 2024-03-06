@@ -13,10 +13,6 @@ COPY wordpress.conf /etc/nginx/conf.d/
 COPY --chown=www-data:www-data wp-config.php  /var/www/html/wordpress/
 
 
-COPY fullchain.pem /etc/letsencrypt/live/#adresse du serveur/
-COPY privkey.pem /etc/letsencrypt/live/#adresse du serveur/
-COPY options-ssl-nginx.conf /etc/letsencrypt/
-COPY ssl-dhparams.pem /etc/letsencrypt/
 
 
 EXPOSE 80 443
